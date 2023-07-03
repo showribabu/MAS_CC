@@ -8,6 +8,7 @@
     overflow: hidden;
     white-space: nowrap; /* Prevent text from wrapping */
     font-size: 20px;
+   
 }
 
 
@@ -19,6 +20,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+    
 }
 
 main.table {
@@ -30,6 +32,7 @@ main.table {
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
     overflow: hidden;
+    
 }
 
 .table__header {
@@ -51,25 +54,23 @@ main.table {
     width: 95%;
     border: 3px solid rgb(22, 44, 98);
 
-    max-height: calc(89% - 1.6rem);
     /* background-color: #fffb; */
     margin: .8rem auto;
     border-radius: .6rem;
     overflow: auto;
-    overflow: overlay;
+   
 }
 
 .table__body::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 1.5rem;
     height: 0.5rem;
 }
-
 .table__body::-webkit-scrollbar-thumb {
     border-radius: .5rem;
-    background-color: #0004;
+    background-color: rgb(30, 39, 59);
     visibility: hidden;
+    width: 100px;
 }
-
 .table__body:hover::-webkit-scrollbar-thumb {
     visibility: visible;
 }
@@ -181,15 +182,7 @@ p:hover {
     margin: 100px;
 }
 
-button {
-    padding: 5px 5px;
-    background-color: #2f294d;    
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-   
-}
+
 
 
 .rad_btn {
@@ -205,16 +198,8 @@ label {
     margin-right: 20px;
 }
 
-.table__body button a {
-    text-decoration: none;
-    color: white;
-    font-size: 1.8 rem;
-}
 
-.table td .container .reject-button {
-    background-color: #2f294d;
 
-}
 
 h1
 {
@@ -277,7 +262,7 @@ body {
     list-style: none;
 }
 
-.navbar-link:link, .navbar-link:visited {
+.navbar-link:link {
     display: inline-block;
     text-transform: uppercase;
     text-decoration: none;
@@ -288,7 +273,6 @@ body {
     padding: 10px;
     color: white;
 }
-
 
 nav ul {
     list-style-type: none;
@@ -465,26 +449,10 @@ h4
 
  
 
-  button
-  {
-    padding: 0px 10px;
-    font-size: 30px;
-    color: black;
-  }
-.home_page
-{
-    display: flex;
-
-}
 a
 {
     text-decoration: none;
 
-}
-.home_page button
-{
-    background-color: white;
-    height: 50px;
 }
 
 i {
@@ -498,12 +466,17 @@ i {
 }
 footer {
     text-align: center;
-    padding: 35px;
     width: 100%;
     bottom: 0;
     position: fixed;
     color: white;
+    
+    height: 50px;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: #100a89;
 }
 
@@ -517,13 +490,13 @@ footer {
     left:50%;
 }
 
-.user_name
+
+
+
+.table__body
 {
-    color: white;
-    font-size: 40px;
-    
-    font-style: bold;
-    transform: translate(15px, -45px);
+    max-height: 480px; 
+    /* overflow-y: scroll;  */
 }
 
 img{
@@ -532,4 +505,45 @@ img{
     position: fixed;
     top: 0;
     left: 0;
+}
+
+
+button {
+    padding: 5px 5px;
+    /* color: #fff; */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+   
+}
+
+.table__body button a
+{
+    color: white;
+}
+.container .accept_button
+{
+    background-color: green;
+}
+.container .reject_button
+{
+    background-color: #a40e0e;;
+}
+
+.navbar
+{
+    position: fixed;
+    top: 65px;
+    right: 30px;
+
+}
+.user_name
+{
+    color: white;
+    font-size: 40px;
+    font-style: bold;
+    /* transform: translate(66px, -45px); */
+    position: fixed;
+    top: 40px; /* Adjust the top value to your desired position */
+    left: 120px; /* Adjust the left value to your desired position */
 }

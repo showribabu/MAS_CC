@@ -18,7 +18,8 @@ html {
     overflow-x: hidden;
 }
 
-body {
+
+ body{
     overflow-x: hidden;
 }
 
@@ -273,10 +274,15 @@ i {
 
 footer {
     text-align: center;
-    padding: 35px;
     width: 100%;
     bottom: 0;
     position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 50px;
+    
     color: white;
     font-weight: bold;
     background-color: #100a89;
@@ -291,7 +297,7 @@ footer {
     font-style: bold;
     position: fixed;
     top: 2%;
-    left:50%;
+    left: 50%;
 }
 /* for user name fetched from db */
 /* .user_name
@@ -305,15 +311,7 @@ footer {
 
 } */
 
-.user_name
-{
-    color: white;
-    font-size: 40px;
-    
-    font-style: bold;
-    transform: translate(66px, -45px);
-    
-}
+
 
 /* for image */
 
@@ -332,9 +330,10 @@ nav li a {
     /* background-color: red; */
     color: white;
 }
-nav li a:hover {
-    /* background-color: red; */
+/* nav li a:hover {
+    background-color: red; 
 }
+*/
 
 /* nav li a {
     display: block;
@@ -396,3 +395,21 @@ nav ul ul a:hover {
     
     /* Add underline only on hover */
 }
+.navbar
+{
+    position: fixed;
+    top: 65px;
+    right: 30px;
+
+}
+.user_name
+{
+    color: white;
+    font-size: 40px;
+    font-style: bold;
+    /* transform: translate(66px, -45px); */
+    position: fixed;
+    top: 40px; /* Adjust the top value to your desired position */
+    left: 120px; /* Adjust the left value to your desired position */
+}
+

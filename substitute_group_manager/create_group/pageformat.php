@@ -1,6 +1,6 @@
 <?php
 
-include 'conn.php';
+include '../connection.php';
 session_start();
 // if(isset($_POST['user_id']))
 // {
@@ -32,7 +32,7 @@ session_start();
 <head>
     <title>MultiParty Authentication System</title>
     <style>
-    body {
+        body {
             margin: 0;
             padding: 0;
             display: flex;
@@ -40,9 +40,10 @@ session_start();
             min-height: 100vh;
             font-family: sans-serif;
             /* Change font style to sans-serif */
-            background-color:#b8d5ff;
+            background-color: #b8d5ff;
             overflow: hidden;
         }
+
         .container {
             width: 780px;
             height: 360px;
@@ -52,7 +53,7 @@ session_start();
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            margin-top:120px;
+            margin-top: 120px;
         }
 
         header {
@@ -77,18 +78,20 @@ session_start();
             margin-left: 5px;
             background-color: white;
         }
-        .prof {
-            flex-direction:row;
-        }
-        .txt { 
-        position: absolute;
-        top: 15%;
-        width: 15%;
-        text-align: center;
-        font-size: 15px;
-    }
 
-    nav ul {
+        .prof {
+            flex-direction: row;
+        }
+
+        .txt {
+            position: absolute;
+            top: 16%;
+            width: 18%;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        nav ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
@@ -150,27 +153,42 @@ session_start();
         footer p {
             font-weight: bold;
         }
-
     </style>
 </head>
+
 <body>
-<?php  
-    $mid=$_SESSION['mid'];
-    $gnum=$_SESSION['gnum'];
+    <?php
+    $mid = $_SESSION['mid'];
     $query2 = "select * from user where user_id = '$mid'";
-    $result2 = mysqli_query($con,$query2);
+    $result2 = mysqli_query($con, $query2);
     $row = mysqli_fetch_assoc($result2);
+    // try{
+    // $name = $row['first_name']." ".$row['last_name'];
+    // }
+    // catch(Exception e)
+    // {
+
+    // }
     $name = $row['first_name'];
-    $imgsrc = $row['photo_location'];
+    /*IMage url from database..*/
+    $sql34 = "SELECT photo_location FROM user WHERE user_id='$mid'";
+    $rr = mysqli_query($con, $sql34);
+    if ($rr) {
+        $photo_location = mysqli_fetch_row($rr)[0];
+        $photo_location = './%23' . substr($photo_location, 1, strlen($photo_location));
+        $_SESSION['photo_location'] = $photo_location;
+        // echo "photo_location: ".$_SESSION['photo_location'];
+    } else {
+        echo "<script>alert('Error in finding Image location');</script>";
+    }
     ?>
     <header>
         <div class="prof">
-        <img class="profile" src="<?php echo "./".$imgsrc ?>" alt="User Image" style="width: 50px; height: 50px;">
-        <div class="txt">
-        <h3><?php echo $name;?> </h3>
-        <h3><?php echo $gnum;?></h3>
+            <img class="profile" src="user.jpg" alt="User Image" style="width: 50px; height: 50px;">
+            <div class="txt">
+                <h3><?php echo $name; ?> </h3>
+            </div>
         </div>
-    </div>
         <nav>
             <ul>
                 <li><a href="group.php">Home</a></li>
@@ -184,7 +202,7 @@ session_start();
                 <li><a href="dataaccess.php">Data Access</a>
                     <ul>
                         <li><a href="fileupload.php">Upload file</a></li>
-                        <li><a href="fileaccess.php">Access file</a></li>
+                        <li><a href="file.php">Access file</a></li>
                     </ul>
                 </li>
                 <li>
@@ -196,29 +214,29 @@ session_start();
                 </li>
                 <li>
                     <?php
-                // // Check if the user is already logged in
-                // if (!isset($_SESSION['mid'])) {
-                // // Redirect to the login page if not logged in
-                // header("Location: index.php");
-                // exit();
-                // }
+                    // // Check if the user is already logged in
+                    // if (!isset($_SESSION['mid'])) {
+                    // // Redirect to the login page if not logged in
+                    // header("Location: index.php");
+                    // exit();
+                    // }
 
-                // Handle the logout process
-                if (isset($_GET['logout'])) {
-                // Clear all session variables
-                session_unset();
+                    // Handle the logout process
+                    if (isset($_GET['logout'])) {
+                        // Clear all session variables
+                        session_unset();
 
-                // Destroy the session
-                session_destroy();
+                        // Destroy the session
+                        session_destroy();
 
-                // Redirect to the login page after logout
-                header("Location: index.php");
-                exit();
-                }
-?>
+                        // Redirect to the login page after logout
+                        header("Location: index.php");
+                        exit();
+                    }
+                    ?>
 
-<!-- Logout button -->
-<a href="index.php?logout=true">Logout</a>
+                    <!-- Logout button -->
+                    <a href="index.php?logout=true">Logout</a>
                 </li>
             </ul>
         </nav>

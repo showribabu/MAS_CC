@@ -20,7 +20,8 @@
 main.table {
     width: 82vw;
     height: auto;
-    /* background-color: #fff5; */
+    
+    background: rgb(227 227 227);
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
@@ -47,7 +48,6 @@ main.table {
 .table__body {
     border: 3px solid rgb(137, 22, 22);
     width: 95%;
-    max-height: calc(89% - 1.6rem);
     /* background-color: #fffb; */
     margin: .8rem auto;
     border-radius: .6rem;
@@ -56,16 +56,15 @@ main.table {
 }
 
 .table__body::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 1.5rem;
     height: 0.5rem;
 }
-
 .table__body::-webkit-scrollbar-thumb {
     border-radius: .5rem;
-    background-color: #0004;
+    background-color: rgb(30, 39, 59);
     visibility: hidden;
+    width: 100px;
 }
-
 .table__body:hover::-webkit-scrollbar-thumb {
     visibility: visible;
 }
@@ -461,12 +460,17 @@ h4
 
 footer {
     text-align: center;
-    padding: 35px;
     width: 100%;
     bottom: 0;
     position: fixed;
     color: white;
     font-weight: bold;
+    
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: #100a89;
 
 }
@@ -478,20 +482,36 @@ footer {
     top: 2%;
     left:50%;
 }
-.user_name
-{
-    color: white;
-    font-size: 40px;
-    
-    font-style: bold;
-    transform: translate(15px, -45px);
-}
 
 header img{
-    /* /* transform: translate(20%,20%); */
     width: 110px; 
     position: fixed;
     top: 0px;
     left: 0px;
-    /* border: 1px solid red; */
+}
+
+.table__body
+{
+    max-height:  10px;
+    overflow-y: scroll;
+
+}
+
+
+.navbar
+{
+    position: fixed;
+    top: 65px;
+    right: 30px;
+
+}
+.user_name
+{
+    color: white;
+    font-size: 40px;
+    font-style: bold;
+    /* transform: translate(66px, -45px); */
+    position: fixed;
+    top: 40px; /* Adjust the top value to your desired position */
+    left: 120px; /* Adjust the left value to your desired position */
 }

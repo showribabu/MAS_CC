@@ -90,7 +90,7 @@ if (isset($_POST['submit'])) {
         border: none;
         border-radius: 5px;
         margin-top: 30px;
-        margin-left: 360px;
+        margin-left: 325px;
         cursor: pointer;
     }
     </style>
@@ -98,38 +98,41 @@ if (isset($_POST['submit'])) {
 <body>
     <div class="container">
     <h2>Become Manager</h2>
-        <form method="post" enctype="multipart/form-data">
-            
-                <label for="dropdown">Group Type:</label>
-                <select id="dropdown" name="dropdown">
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                </select>
-    
-            <div>
-                <label class="details">Message:</label>
-                <textarea class="textbox" name="message" cols="51" rows="5" required
-                    placeholder="Enter up to 100 characters without special characters.."
-                    oninput="checkSpecialCharacters()" maxlength="200" minlength="5"></textarea>
-            </div>
-            <input class="submit-btn" type="submit" name="submit" value="Submit" onclick="displayAlert()">
-        </form>
-    </div>
+    <form method="post" enctype="multipart/form-data" onsubmit="return checkSpecialCharacters()">
 
-    <script>
-    function checkSpecialCharacters() {
-        var messageInput = document.getElementsByName("message")[0];
-        var message = messageInput.value;
-        var specialCharacters = /[^A-Za-z0-9,. ]/;
-        if (specialCharacters.test(message)) {
-            document.getElementById("messageWarning").style.display = "block";
-            return false;
-        } else {
-            document.getElementById("messageWarning").style.display = "none";
-            return true;
-        }
+<label for="dropdown">Group Type:</label>
+<select id="dropdown" name="dropdown">
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+    <option value="D">D</option>
+</select>
+
+<div>
+<label class="details">Message:</label>
+<textarea class="textbox" name="message" cols="51" rows="5" required
+    placeholder="Enter up to 100 characters without special characters.."
+    oninput="checkSpecialCharacters()" maxlength="200" minlength="5"></textarea>
+</div>
+<input class="submit-btn" type="submit" name="submit" value="Submit" >
+<!-- <input class="submit-btn" type="submit" name="submit" value="Submit" onclick="displayAlert()"> -->
+
+<p id="messageWarning" style="color: red; text-align: center; display: none;">Please enter up to 100 characters and  without special characters.</p>
+</form>
+</div>
+
+<script>
+function checkSpecialCharacters() {
+var messageInput = document.getElementsByName("message")[0];
+var message = messageInput.value;
+var specialCharacters = /[^A-Za-z0-9,. ]/;
+if (specialCharacters.test(message)) {
+document.getElementById("messageWarning").style.display = "block";
+return false;
+} else {
+document.getElementById("messageWarning").style.display = "none";
+return true;
+}
     }
 
     function displayAlert() {

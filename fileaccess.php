@@ -14,7 +14,7 @@ if(isset($_POST['user_id']) && isset($_POST['privilege']))
        <?php
        //stores gm userid as gmid
     $_SESSION['mid']=$user_id;
-    $_SESSION['group_number']=$group_number;
+    $_SESSION['gnum']=$group_number;
     $_SESSION['group_type']=$group_type;
     $_SESSION['privilege']=$privilege;
 

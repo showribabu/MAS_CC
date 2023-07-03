@@ -1,25 +1,16 @@
 <?php
-// error_reporting(0);
-
 session_start();
 $admin_id_ = $_SESSION['user_id'];
-$admin_name_ = $_SESSION['admin_name_'];
-include '../connector.php';
+$admin_user = $_SESSION['user_id'];
+include "../connector.php";
 
+
+echo $rid = $_GET['rid'];
+echo "<br>";
 echo $gmid = $_GET['uid'];
-
 echo "<br>";
-echo $group_type = $_GET['tid'];
+echo $group_type = $_GET['gt'];
 echo "<br>";
-// $sum = 0;
-// $query = "SELECT * FROM group_data WHERE group_type = '$group_type'";
-// $res = mysqli_query($con, $query) or die("Query Unsuccessful");
-
-// while (mysqli_fetch_assoc($res)) {
-//     $sum += 1;
-// }
-
-// echo $grp_num = $group_type . ($sum + 1);
 
 
 
@@ -65,21 +56,12 @@ echo  $count1;
 echo $grp_num = $group_type . $count1;
 
 
-// echo $grp_num = $group_type . "" . $count;
-
-echo "<br>hope so value printed";
-
-
-// getting id of clicked user as well as adminId
-
-echo "<br>";
 
 $sql = "select * from user WHERE user_id = '$gmid'";
 $sql1 = "select * from admin WHERE user_id = '$admin_id_'";
 
-
-//fetching user secret
 $result = mysqli_query($con, $sql) or die("Query Unsuccessful");
+$result1 = mysqli_query($con, $sql1) or die("Query Unsuccessful");
 if (mysqli_num_rows($result) > 0) {
     while ($data = mysqli_fetch_assoc($result)) {
         $secret2 = $data['secret'];
@@ -91,8 +73,9 @@ if (mysqli_num_rows($result) > 0) {
 echo "<br>";
 
 
+
+
 //fetching admin secret 
-$result1 = mysqli_query($con, $sql1) or die("Query Unsuccessful");
 if (mysqli_num_rows($result1) > 0) {
     while ($data = mysqli_fetch_assoc($result1)) {
         $secret1 = $data['secret'];
@@ -172,6 +155,8 @@ if (!is_null($gmid)) {
 }
 
 
+
+
 date_default_timezone_set('Asia/Kolkata');
 $currentDateTime = date('Y-m-d H:i:s');
 
@@ -194,6 +179,7 @@ $dgpk = gmp_strval($dgpk);
 
 $pgpk = $qpowu * $dgpk;
 
+
 if ($group_type == 'D') {
     $bindx = hash('sha512', $qpowu * $ix * $r);
 } else {
@@ -207,14 +193,6 @@ $result = mysqli_query($con, $sql) or die("Query Unsuccessful");
 
 
 
-
-
-
-
-
-/*enc_keyryptiion and decryption...*/
-
-/*enc_keyryption*/
 $iv = hash('sha256', $secret1);
 $iv = substr($iv, 0, 16);
 
@@ -229,7 +207,11 @@ if ($r) {
 }
 
 
-header("Location: gm_selected.php");
+$sql5 = "UPDATE requests SET r_status = 'a' WHERE request_id = '$rid'";
+$result = mysqli_query($con, $sql5) or die("Query Unsuccessful");
+
+
+header("Location: gm_request.php");
 
 
 mysqli_close($con);

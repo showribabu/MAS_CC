@@ -5,7 +5,7 @@ session_start();
 if(isset($_SESSION['mid']))
 {
 
-    $_SESSION['mid']=$_SESSION['mid'];
+    // $_SESSION['mid']=$_SESSION['mid'];
 }
 
 
@@ -30,7 +30,7 @@ if(isset($_SESSION['mid']))
             overflow: hidden;
         }
         .container {
-            width: 600px;
+            width: 780px;
             height: 360px;
             margin: auto auto;
             background-color: white;
@@ -38,7 +38,7 @@ if(isset($_SESSION['mid']))
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            margin-top:60px;
+            margin-top:120px;
         }
 
         header {

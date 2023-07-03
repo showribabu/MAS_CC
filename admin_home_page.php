@@ -1,8 +1,9 @@
 <?php
 session_start();
 // error_reporting(0);
+// receiving the user_id passed from log_in page
 $admin_user_ = $_SESSION['user_id'];
-include 'connection.php';
+include 'connector.php';
 
 $query1 = "select * from admin where user_id = '$admin_user_'";
 $result1 = mysqli_query($con, $query1);
@@ -33,7 +34,7 @@ $_SESSION['admin_name_'] = $admin_name_;
 
     <header class="header">
         <div class="details">
-            <img src="pngwing.com.png" alt="Profile Picture" />
+            <img src="images/admin.png" alt="Profile Picture" />
 
 
         </div>
@@ -49,17 +50,16 @@ $_SESSION['admin_name_'] = $admin_name_;
                     <a class="navbar-link" href="create_group/gm_request.php">Request List</a>
                 </li>
                 <li>
-                    <a id="create-group-btn" onclick="showGroupButtons()" class="navbar-link" href="create_group/select_member.php">Create Group</a>
+                    <a id="create-group-btn" onclick="showGroupButtons()" class="navbar-link" href="create_group/select_member.php">CREATE</a>
                 </li>
                 <li>
-                    <a class="navbar-link" href="delete_group/grp_deletion.php">Delete Group</a>
+                    <a class="navbar-link" href="delete_group/grp_deletion.php">DELETE</a>
                 </li>
                 <li>
-                    <a class="navbar-link" href="substitute_group_manager/substitute_gm.php">Substitute Group
-                        Manager</a>
+                    <a class="navbar-link" href="substitute_group_manager/substitute_gm.php">SUBSTITUTE</a>
                 </li>
                 <li>
-                    <a class="navbar-link" href="view_group/vg_option.php">View Group</a>
+                    <a class="navbar-link" href="view_group/vg_option.php">VIEW</a>
                 </li>
                 <li>
                     <a class="navbar-link" href="index.php">Log Out</a>

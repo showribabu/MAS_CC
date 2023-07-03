@@ -89,12 +89,36 @@ $mid = $_SESSION['mid'];
             <?php
             include 'conn.php';
             $request_from=$mid;
-            $query = "SELECT group_number, message, r_status FROM requests where request_from='$request_from'";
+            $query = "SELECT * FROM requests where request_from='$request_from'";
             $res = mysqli_query($con, $query);
             while ($row = mysqli_fetch_assoc($res)) {
+
+
+                $sql12="select * from admin";
+                $r3=mysqli_query($con, $sql12);
+                if($r3)
+                {
+                    $rr=$r3->fetch_assoc();
+                    $name=$rr['first_name'].$rr['middle_name'].$rr['last_name'];
+                    $admid=$rr['user_id'];
+                    // echo $admid;
+
+                }
+                echo "<tr>";
+                if($row['request_to']==$admid)
+                {
+                    echo "<td>$name</td>";   
+
+                }
+                else 
+                {
+                    echo "<td> $row[group_number]</td>";
+
+                }
+
+
                 ?>
-                <tr>
-                    <td><?php echo $row['group_number']; ?></td>
+                
                     <td><?php echo $row['message']; ?></td>
                     <td>
                         <?php

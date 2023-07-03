@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) {
         border: none;
         border-radius: 5px;
         margin-top: 30px;
-        margin-left: 360px;
+        margin-left: 325px;
         cursor: pointer;
     }
     </style>
@@ -99,7 +99,7 @@ if (isset($_POST['submit'])) {
 <body>
 <div class="container">
 <h2>Become Member</h2>
-    <form method="post">
+<form method="post"  onsubmit="return checkSpecialCharacters()">
         <label for="group_number">Group Number:</label>
         <input type="text" id="group_number" name="group_number" required>
         <div>
@@ -109,7 +109,10 @@ if (isset($_POST['submit'])) {
                     oninput="checkSpecialCharacters()" maxlength="200" minlength="5"></textarea>
             </div>
             <input type="submit" name="submit" value="Submit" class="submit-btn">
-    </form>
+    
+            <p id="messageWarning" style="color: red; text-align: center; display: none;">Please enter up to 100 characters and  without special characters.</p>
+
+        </form>
     </div>
     <script>
     function checkSpecialCharacters() {

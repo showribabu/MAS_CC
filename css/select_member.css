@@ -346,11 +346,17 @@ h4
 
 footer {
     text-align: center;
-    padding: 35px;
     width: 100%;
+
     bottom: 0;
     position: fixed;
+    
+    height: 50px;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     font-weight: bold;
     background-color: #100a89;
 
@@ -373,11 +379,26 @@ header img{
     left:50%;
 }
 
+.table__body
+{
+    max-height: 430px; 
+    /* overflow-y: scroll;  */
+}
+
+
+.navbar
+{
+    position: fixed;
+    top: 65px;
+    right: 30px;
+
+}
 .user_name
 {
     color: white;
     font-size: 40px;
-    
     font-style: bold;
-    transform: translate(15px, -45px);
+    position: fixed;
+    top: 40px; 
+    left: 120px; 
 }
