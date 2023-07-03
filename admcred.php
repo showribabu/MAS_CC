@@ -4,11 +4,11 @@ include "conn.php";
 
 
 
-    // $gmid = $_SESSION['gmid'];
-    // $group_type=$_SESSION['group_type'];
+    $gmid = $_SESSION['gmid'];
+    $group_type=$_SESSION['group_type'];
    
-    $gmid = 'John_123';
-    $group_type='A'; 
+    // $gmid = 'John_123';
+    // $group_type='A'; 
 
     //members id...id1
     // $admid=1;

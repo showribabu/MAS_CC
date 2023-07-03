@@ -67,7 +67,7 @@ if (isset($_GET['user_id'])) {
             if($i['user_id']==$gmid) 
             {
 
-                $hgm=$i['secret'];
+                $secret2=$i['secret'];
 
             }
         }
@@ -82,18 +82,18 @@ if (isset($_GET['user_id'])) {
     $p=$_SESSION['p'];
     $q=$_SESSION['q'];
 
-    function secret($hash)
-    {
+    // function secret($hash)
+    // {
 
-        $p=$_SESSION['p'];
-        $q=$_SESSION['q'];
-        $binary=hex2bin($hash);
-        //but here binary is large so..use GMP module
-        $u=gmp_strval(gmp_import($binary));
-        $secret=gmp_strval(gmp_powm($q, $u, $p));
-        return $secret;
-    }
-    $secret2=secret($hgm);
+    //     $p=$_SESSION['p'];
+    //     $q=$_SESSION['q'];
+    //     $binary=hex2bin($hash);
+    //     //but here binary is large so..use GMP module
+    //     $u=gmp_strval(gmp_import($binary));
+    //     $secret=gmp_strval(gmp_powm($q, $u, $p));
+    //     return $secret;
+    // }
+    // $secret2=secret($hgm);
 
     //get the encrypted data afrom group data..
     /*Decryption*/

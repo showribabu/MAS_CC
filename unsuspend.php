@@ -30,18 +30,17 @@ $gm_id=$_SESSION['gmid'];
 global  $group_type, $group_number, $gm_id;
 ?>
     <div class="data">
-        <p class="pp" id="req">Suspended Members List</p>
+        <p class="pp" id="req">SUSPENDED MEMBERS LIST</p>
 
         <!-- <div class='table_container'> -->
             <table border="5px" cellpadding="8px" align="center" cellspacing="5px" class="tb" style="height:80px; width:780px;  text-align:center; align-items:center;">
                 <!-- <thead> -->
                   <tr id="tr1">
-                      <th>User ID</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Activity Status</th>
-                      <th>Action</th> 
-                    </tr>
+                    <th>NAME</th>
+                    <th>EMAIL ID</th>
+                    <th>ACTIVITY STATUS</th>
+                    <th>ACTION</th> 
+                </tr>
                 <!-- </thead> -->
             <!-- <tbody> -->
 <?php
@@ -60,23 +59,20 @@ if(!$con)
         if ($result && mysqli_num_rows($result) > 0) {
             while ($member = mysqli_fetch_assoc($result)){       
                 echo "<tr>";
-                echo "<td>" . $member['user_id'] . "</td>";
+                // echo "<td>" . $member['user_id'] . "</td>";
  
                 $user_id=$member['user_id'];
                 // echo "<td>**NAME***</td>";
                 // echo "<td>**MAIL***</td>";
-                $query= "SELECT first_name, email FROM user WHERE user_id = '$user_id'";
+                $query = "SELECT * FROM user WHERE user_id = '$user_id'";
                 $res = mysqli_query($con, $query);
                 $row1 = $res->fetch_assoc();
-              
-                if ($row1) { // Check if a row is fetched
-                  echo "<td>" . $row1['first_name'] . "</td>";
-                  echo "<td>" . $row1['email'] . "</td>";
-                }
-                 else {
-                  echo "<td>-</td>";
-                 echo "<td>-</td>";
-                  }
+
+                if ($row1) {
+                    $name=$row1['first_name'].$row1['middle_name'].$row1['last_name'];
+                    echo "<td>" . $name . "</td>";
+                    echo "<td>" . $row1['email'] . "</td>";
+                } 
 
 
                 echo "<td>" . $member['activity_status'] . "</td>"; 

@@ -51,14 +51,14 @@ include "button.html";
             <p class="pp" id="req">STATUS OF REQUESTS</p>
 
         <table class="tb"  border="5px" cellpadding="8px" align="center" cellspacing="5px" style="height:80px; width:780px;  text-align:center; align-items:center;">
-            <tr id="tr1"><th>USER ID</th><th>MEMBER SELECTION</th><th>STATUS</th></tr>
+            <tr id="tr1"><th>NAME</th><th>EMAIL ID</th><th>MEMBER SELECTION</th><th>STATUS</th></tr>
             <?php
             $gmid=$_SESSION['gmid'];
             $group_number=$_SESSION['group_number'];
 
                 // $sql = 'SELECT * FROM requests where request_from="'.$gmid.'"';
 
-                $sql = 'SELECT * FROM requests WHERE request_from = "' . $gmid . '" AND request_to NOT IN (SELECT user_id FROM group_data WHERE group_number = "' . $group_number . '")';
+                $sql = 'SELECT * FROM requests WHERE request_from = "' . $gmid . '" AND request_to NOT IN (SELECT user_id FROM group_data WHERE group_number = "' . $group_number . ' ")';
 
                 $r=mysqli_query($con, $sql);
 
@@ -67,22 +67,36 @@ include "button.html";
                     $udata=$r;
                     foreach ($udata as $i) 
                     {
-                        echo "<tr><td>$i[request_to]</td>";
-                        // echo "<td><a href='#' class='btn btn-success' id='R'>SELECTED</a></td>";
-                        echo "<td>Selected</td>";
+
+                        $sql5="select first_name,middle_name,last_name,email from user where user_id='$i[request_to]'";
+                        $r5=mysqli_query($con,$sql5);
+                        if($i['r_status']=='a' || $i['r_status']=='p' || $i['r_status']=='r')
+                        {
+                            if($r5)
+                            {
+                                $row=$r5->fetch_assoc();
+                                $name=$row['first_name'].$row['middle_name'].$row['last_name'];
+                                echo "<tr><td>$name</td>";
+                                echo"<td>$row[email]</td>";
+                                echo "<td>Selected</td>";
+                            
+                            if ($i['r_status'] == 'a') {
+                                echo "<td class='status accepted'><a href='credentials.php?user_id={$i['request_to']}' class='btn btn-success' id='A'>Accepted</a></td>";
+                            } elseif ($i['r_status'] == 'r') {
+                                echo "<td class='status rejected'><a href='#' class='btn btn-danger' id='R'>Rejected</a></td>";
+                            } elseif ($i['r_status'] == 'p') {
+                                echo "<td class='status pending'><a href='#' class='btn btn-warning' id='P'>Pending</a></td>";
+                            } else {
+                                echo "<td>$i[r_status]</td>";
+                            }
+                        
+                            echo "</tr>";
+                            }
+                            // echo "<tr><td>$i[request_to]</td>";
+                            // echo "<td><a href='#' class='btn btn-success' id='R'>SELECTED</a></td>";
+                        
                     
-                        if ($i['r_status'] == 'a') {
-                            echo "<td class='status accepted'><a href='credentials.php?user_id={$i['request_to']}' class='btn btn-success' id='A'>Accepted</a></td>";
-                        } elseif ($i['r_status'] == 'r') {
-                            echo "<td class='status rejected'><a href='#' class='btn btn-danger' id='R'>Rejected</a></td>";
-                        } elseif ($i['r_status'] == 'p') {
-                            echo "<td class='status pending'><a href='#' class='btn btn-warning' id='P'>Pending</a></td>";
-                        } else {
-                            echo "<td>$i[r_status]</td>";
                         }
-                    
-                        echo "</tr>";
-                    
                     }
                 } 
                 else 

@@ -13,7 +13,7 @@ include "button.html";
     $group_number=$_SESSION['group_number'];
 
     // $sql = 'SELECT * FROM user WHERE privilege != "admin" and user_id !="'.$gmid.'"';
-    $sql = 'SELECT * FROM user WHERE user_id NOT IN (SELECT user_id FROM group_data WHERE group_number = "' . $group_number . '")';
+    $sql = 'SELECT * FROM user WHERE user_id NOT IN (SELECT user_id FROM group_data WHERE group_number = "' . $group_number . '") ORDER BY doj';
 
 
     $r=mysqli_query($con, $sql);
@@ -40,14 +40,15 @@ include "button.html";
     <div class="data">
         <p class="pp" id="req">LIST OF MEMBERS</p>
         <table border="5px" cellpadding="8px" align="center" cellspacing="5px" class="tb" style="height:100px; width:780px;  text-align:center; align-items:center;">
-            <tr id="tr1"><th>USER ID</th><th>NAME</th><th>EMAIL</th><th>MEMBER SELECTION</th></tr>
+            <tr id="tr1"><th>NAME</th><th>EMAIL ID</th><th>MEMBER SELECTION</th></tr>
             <?php
 
         try{
             foreach ($udata as $i) {
-                echo "<tr><td>$i[user_id]</td>";
-                echo"<td>*****</td>";
-                echo"<td>***@***.com</td>";
+                $name=$i['first_name'].$i['middle_name'].$i['last_name'];
+
+                echo "<tr><td>$name</td>";
+                echo"<td>$i[email]</td>";
                 echo "<td><a href='grpinit.php?muid=$i[user_id]'  class='btn btn-danger' id='R'>SELECT</a></td>";
 
                 echo "</tr>";

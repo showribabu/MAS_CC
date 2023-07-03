@@ -42,7 +42,7 @@ include "button.html";
             <p class="pp" id="req">REQUESTING FOR MEMBERSHIP</p>
 
         <table border="5px" cellpadding="8px" align="center" cellspacing="5px" class="tb" style="height:80px; width:850px;  text-align:center; align-items:center;">
-            <tr id="tr1"><th>Request ID</th><th>Message</th><th>user_id</th><th>ACCEPT</th><th>REJECT</th></tr>
+            <tr id="tr1"><th>NAME</th><th>EMAIL ID</th><th>MESSAGE</th><th>ACCEPT</th><th>REJECT</th></tr>
         
             <?php
 
@@ -63,14 +63,22 @@ if($r1)
     foreach($r1 as $i)
     {
         
-
+        $sql5="select first_name,middle_name,last_name,email from user where user_id='$i[request_from]'";
+        $r5=mysqli_query($con,$sql5);
+        if($r5)
+        {
+            $row=$r5->fetch_assoc();
+            $name=$row['first_name'].$row['middle_name'].$row['last_name'];
+            echo "<tr><td>$name</td>";
+            echo"<td>$row[email]</td>";
+        }
               
                
-                echo "<tr><td>$i[request_id]</td>";
+                // echo "<tr><td>$i[request_id]</td>";
 
                 echo "<td>$i[message]</td>";
 
-                echo "<td>$i[request_from]</td>";
+                // echo "<td>$i[request_from]</td>";
 
                 // echo "<td><a href='rmv.php' class='btn btn-danger' id='A'>SUSPEND</a></td>";
                 //     // ?user_id=<?php echo $i[user_id];?////>

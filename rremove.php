@@ -29,8 +29,8 @@ $gmid=$_SESSION['gmid'];
         
         <p class="pp" id="req">REQUESTS FOR REMOVAL</p>
 
-    <table border="5px" cellpadding="8px" align="center" cellspacing="5px" class="tb" style="height:80px; width:780px;  text-align:center; align-items:center;">
-        <tr id="tr1"><th>REQUEST ID</th><th>USER ID</th><th>MESSAGE</th><th>ACCEPT</th><th>REJECT</th></tr>
+    <table border="5px" cellpadding="8px" align="center" cellspacing="5px" class="tb" style="height:80px; width:893px;  text-align:center; align-items:center;">
+    <tr id="tr1"><th>NAME</th><th>EMAIL ID</th><th>MESSAGE</th><th>ACCEPT</th><th>REJECT</th></tr>
             <?php
 
                 $group_number=$_SESSION['group_number'];
@@ -43,11 +43,24 @@ $gmid=$_SESSION['gmid'];
                 {
                     foreach($r1 as $i)
                     {
-                        echo "<tr><td>$i[request_id]</td>";
+
+
+
+                        $sql5="select first_name,middle_name,last_name,email from user where user_id='$i[request_from]'";
+                        $r5=mysqli_query($con,$sql5);
+                        if($r5)
+                        {
+                           $row=$r5->fetch_assoc();
+                           $name=$row['first_name'].$row['middle_name'].$row['last_name'];
+                           echo "<tr><td>$name</td>";
+                           echo"<td>$row[email]</td>";
+                        }
+
+                        // echo "<tr><td>$i[request_id]</td>";
                         // $request_id=$i['request_id'];
                         // $_SESSION['request_id']=$i['request_id'];
 
-                        echo "<td>$i[request_from]</td>";
+                        // echo "<td>$i[request_from]</td>";
 
                         echo "<td>$i[message]</td>";
 

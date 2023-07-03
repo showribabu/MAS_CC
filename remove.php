@@ -92,7 +92,7 @@ $gmid=$_SESSION['gmid'];
         <p class="pp" id="req">LIST OF MEMBERS</p>
 
     <table border="5px" cellpadding="8px" align="center" cellspacing="5px" class="tb" style="height:80px; width:780px;  text-align:center; align-items:center;">
-        <tr id="tr1"><th>USER ID</th><th>Group Number</th><th>REMOVE</th></tr>
+        <tr id="tr1"><th>NAME</th><th>EMAIL ID</th><th>REMOVE</th></tr>
 <?php
 
 
@@ -108,18 +108,19 @@ $group_number=$_SESSION['group_number'];
 
 
 
-$sql2='select * from group_data where group_number="'.$group_number.'" and user_id != "'.$gmid.'" and activity_status="active"';
+$sql2='SELECT * FROM user WHERE user_id IN(select user_id from group_data where group_number="'.$group_number.'" and user_id != "'.$gmid.'" and activity_status="active" order by creation_time)';
 $r2=mysqli_query($con,$sql2);
         if($r2)
         {
             foreach($r2 as $j)
              {
                 //user_id,group_number,mid,activity_status-0/1
+                $name=$j['first_name'].$j['middle_name'].$j['last_name'];
 
-    
-                echo "<tr><td>$j[user_id]</td>";
+                echo "<tr><td>$name</td>";
+                echo"<td>$j[email]</td>";
 
-                echo "<td>$j[group_number]</td>";
+                // echo "<td>$j[group_number]</td>";
 
                 // echo "<td>$j[mid]</td>";
 

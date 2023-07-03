@@ -157,36 +157,39 @@ if ($rr) {
              
             }
 
-            ?>
+    ?>
 
-    <div class="fimg">
+<!-- Files displaying -->
+
+    <!-- <div class="fimg">
         <?php 
-        for($i=1;$i<=20;$i++)
-        {
+        // for($i=1;$i<=20;$i++)
+        // {
 
-            echo "<div class='in'><a href='#' style='text-style:none;'><img src='fimg.png'></a>file.$i</div>";
-        }
+        //     echo "<div class='in'><a href='#' style='text-style:none;'><img src='fimg.png'></a>file.$i</div>";
+        // }
         
         ?>
-    </div>
+    </div> -->
+
+
+
+<!-- Image on top left -->
 
     <div class='pic'>
     <!-- <img src="gm1.jpg" alt="group manager"> -->
     <!-- <img src="./%23images/userimage.png" alt="group manager"> -->
     <img src="<?php echo $_SESSION['photo_location'];?>" alt="group manager">
-
-
-
-
-
     </div>
     
     <p class="data2"><?php echo $_SESSION['name'];?></p>
+
 
     <!-- Footer  -->
     <footer>
         <p>MAS : MULTI PARTY AUTHENTICATION SYSTEM</p>
     </footer>
 
+    
 </body>
 </html>

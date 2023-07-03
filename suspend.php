@@ -28,38 +28,36 @@ $group_number = $_SESSION['group_number'];
 $gm_id = $_SESSION['gmid'];
 ?>
 <div class="data">
-    <p class="pp" id="req">Members Of The Group</p>
-    <table border="5px" cellpadding="8px" align="center" cellspacing="5px" class="tb" style="height:100px; width:780px;  text-align:center; align-items:center;">
+    <p class="pp" id="req">MEMBERS OF THE GROUP</p>
+    <table border="5px" cellpadding="8px" align="center" cellspacing="5px" class="tb" style="height:80px; width:780px;  text-align:center; align-items:center;">
         <tr id="tr1">
-            <th>User ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Activity Status</th>
-            <th>Action</th>
+            <th>NAME</th>
+            <th>EMAIL ID</th>
+            <th>ACTIVITY STATUS</th>
+            <th>ACTION</th>
         </tr>
         <?php
         global $con;
-        $sql = "SELECT user_id, activity_status FROM group_data WHERE group_number = '$group_number' && (activity_status='active' || activity_status='suspended') && privilege!='gm'";
+        $sql = "SELECT user_id, activity_status FROM group_data WHERE group_number = '$group_number' && (activity_status='active' ) && privilege!='gm'";
         $result = mysqli_query($con, $sql);
 
         if ($result && mysqli_num_rows($result) > 0) {
             while ($member = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
-                echo "<td>" . $member['user_id'] . "</td>";
+
+                // echo "<td>" . $member['user_id'] . "</td>";
 
                 $user_id = $member['user_id'];
 
-                $query = "SELECT first_name, email FROM user WHERE user_id = '$user_id'";
+                $query = "SELECT * FROM user WHERE user_id = '$user_id'";
                 $res = mysqli_query($con, $query);
                 $row1 = $res->fetch_assoc();
 
                 if ($row1) {
-                    echo "<td>" . $row1['first_name'] . "</td>";
+                    $name=$row1['first_name'].$row1['middle_name'].$row1['last_name'];
+                    echo "<td>" . $name . "</td>";
                     echo "<td>" . $row1['email'] . "</td>";
-                } else {
-                    echo "<td>-</td>";
-                    echo "<td>-</td>";
-                }
+                } 
 
                 echo "<td>" . $member['activity_status'] . "</td>";
 
@@ -81,9 +79,10 @@ $gm_id = $_SESSION['gmid'];
 
                 echo "</tr>";
             }
-        } else {
-            echo "There are no members in the group";
-        }
+        } 
+        // else {
+        //     echo "There are no members in the group";
+        // }
 
         // Function to suspend a user by updating the activity_status in the groupdata table as suspended for type A or C or D
         function suspendUserAC($userId)
