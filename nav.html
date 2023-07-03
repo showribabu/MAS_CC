@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MultiParty Authentication System</title>
+<style>
+
+    /*Navigation bar */
+    body {
+            margin: 0;
+            font-family:sans-serif;
+            background-color: #b8d5ff;
+            
+        }
+        .hd 
+        {
+            margin-top:0px;    
+            background-color: #100a89;
+            border-radius: 5px;  
+            padding: 0 4.8rem; 
+
+        }
+        h2 
+        {
+          
+           
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+            margin: 0;
+            font-weight: bold;
+            letter-spacing: 0.2rem;
+
+        }
+        nav 
+        {
+            display:flex;
+            
+            padding:10px 3px;
+           
+            margin-left:20%;
+      
+            
+        }
+        nav li {
+            text-decoration: none;
+            list-style: none;
+            position: relative;
+            margin-right:0%;
+
+        }
+        
+        nav li a {
+            display:block;
+            text-decoration: none;
+            text-align: center;
+            padding: 14px 20px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align:center;
+            margin-right:0%;           
+        }
+
+        
+          /* hover */
+
+          nav li a:hover {
+            background-color: #1f84f7;
+        }
+
+         /* Added styling for the sub-menu */
+
+        .sub-menu {
+            display: none;
+            position: absolute;
+
+            background-color: #100a89;
+            padding: 0;
+            margin-top: 0;
+        }
+        nav  li:hover>ul {
+            display: inherit;
+        }
+        .sub-menu li {
+            margin-bottom: 8px;
+            float: none;
+            width: 100%;
+        }
+    
+        .sub-menu li a {
+            display: block;
+
+            text-decoration: none;
+            padding: 10px 16px;
+
+            
+        } 
+        .sub-menu a:hover 
+        {
+            text-decoration: underline;
+
+        }
+        #grp:hover .sub-menu {
+            display: block;
+        }
+    
+
+/*Footer*/
+        footer {
+        text-align: center;
+        padding: 3px;
+        width: 100%;
+        bottom: 0;
+        position: fixed;
+        color: white;
+        font-weight: bold;
+        background-color: #100a89;
+    }
+    
+
+</style>
+   </head>
+<body>
+
+
+<div class="hd">
+        <h2>GROUP MANAGER</h2>
+        <nav>
+
+            <li><a href="group.php">Home</a></li>
+            <li id="grp"><a href="#">Add a Member</a>
+                <ul class="sub-menu">
+                    <li ><a href="request.php" >From Requestlist</a></li>
+                    <li><a href="groupinit.php" >By Selecting</a></li>
+                </ul>
+            </li>
+            <li id="grp"><a href="#">Remove</a>
+                <ul class="sub-menu">
+                    <li ><a href="rremove.php" >From Requestlist</a></li>
+                    <li><a href="remove.php" >By Selecting</a></li>
+                </ul>
+            </li>
+            <li><a href="suspend.php">Suspend</a></li>
+            <li><a href="unsuspend.php">Suspended Members</a></li>
+            <li><a href="group_view.php">Group View</a></li>
+            <li><a href="gmstatus.php">Status</a></li>
+            <li id="grp"><a href="#" >Data Access</a>
+                <ul class="sub-menu">
+                    <li><a href="fileupload.php">Upload file</a></li>
+                    <li><a href="files.php">Access file</a></li>
+                </ul>
+            </li>
+            <li><a href="index.php">Logout</a></li>
+        </nav>
+    </div>
+
+
+
+</body>
+
+
+</html>

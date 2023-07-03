@@ -1,0 +1,335 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    background-color:#b8d5ff;
+    padding: 1px;
+    
+}
+
+.table{
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+.userpic {
+    height: 200px;
+    width: 200px;
+}
+.userpic {
+    width: 100px;
+    /* Set the desired width of the container */
+    height: 100px;
+    /* Set the desired height of the container */
+    overflow: hidden;
+    /* Hide any overflowing content */
+    /* position: absolute; */
+    top:0px;
+    background-color: darkblue;
+}
+
+.userpic img {
+    max-width: 100%;
+    /* Limit the image width to the container's width */
+    max-height: 100%;
+    /* Limit the image height to the container's height */
+    display: block;
+    /* Ensure the image behaves as a block element */
+    margin: auto;
+    /* Center the image horizontally within the container */
+}
+
+.heading1 {
+   
+    padding: 30px 20px;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid black;
+    color: white;
+    background-color: darkblue;
+    height: 55px;
+}
+
+.box{
+    top:5px;
+    left:5px;
+    position: absolute;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width:320px;
+
+}
+.name{
+    color:white;
+    font-size: 25px;
+}
+
+.outside_box{
+    background-color: rgb(237, 232, 232);
+    /* border: 10px solid black; */
+    margin-left: 20px;
+    margin-right:20px;
+    margin-top: 20px;
+}
+
+.inner-heading{
+    text-align: center;
+    background-color: blueviolet;
+    height:80px;
+    padding-top: 20px;
+    font-size:20px;
+}
+
+table {
+    width: 98%;
+    margin: 20px;
+    padding: 10px;
+}
+
+th {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid black;
+    font-size: larger;
+    color: white;
+    background-color: rgb(136, 120, 237);
+}
+
+td {
+    padding: 12px;
+    padding-top: 20px;
+    text-align: center;
+    border: 1px solid black;
+    background-color:white;
+    height: 80px;
+}
+
+button {
+    height: 50px;
+    width:100px;
+    color: white;
+    background-color:darkblue;
+    font-size: 30px;
+    border-radius: 10px;
+}
+
+
+footer {
+    text-align: center;
+    padding: 30px;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    color: white;
+    font-weight: bold;
+    background-color: #100a89;
+}
+
+.nogroup{
+    color: red;
+    position: absolute;
+    top: 200px;
+    left:400px;
+}
+
+#logout{
+    color:white;
+    position: absolute;
+    /* right:2000px; */
+    left:1450px;
+    border: none;
+    font-size: 18px;
+    border-radius: 0;
+}
+#logout:hover{
+    background-color: #1f84f7;
+}
+#home{
+    color:white;
+    position: absolute;
+        /* right:2000px; */
+        left: 1000px;
+        border: none;
+        font-size: 18px;
+        border-radius: 0;
+
+}
+#home:hover{
+    background-color: #1f84f7;
+}
+#request_membership{
+    color:white;
+    position: absolute;
+        /* right:2000px; */
+        left: 1100px;
+        border: none;
+        font-size: 18px;
+        border-radius: 0;
+        white-space: nowrap;
+        width: 190px;
+
+}
+#request_membership:hover{
+    background-color: #1f84f7;
+}
+#request_list{
+    color:white;
+    position: absolute;
+        /* right:2000px; */
+        left: 1325px;
+        border: none;
+        font-size: 18px;
+        border-radius: 0;
+        white-space: nowrap;
+
+}
+#request_list:hover{
+    background-color: #1f84f7;
+}
+
+
+.mainhead{
+    position:absolute;
+    left:670px;
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+.my-button:hover {
+    /* background-color: #1f84f7 ; */
+    color:  #1f84f7 ; /* Change the text color on hover */
+    font-weight: bolder;
+}
+/* td.my-button:hover{
+    background-color: #1f84f7 ;
+
+} */
+
+/* ========================== */
+/* 
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #1f84f7;
+}*/
+
+
+
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #100a89;
+            padding-top: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-bottom: 5px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            margin-left: 10px;
+            max-height:50px;
+        }
+
+        .profile {
+            margin-top: 5px;
+            margin-left: 5px;
+            background-color: white;
+            /* height:15px; */
+        }
+        /* .profile img{
+            height:10px;
+            width:20px;
+        } */
+        .prof {
+            flex-direction:row;
+        }
+        .txt { 
+        position: absolute;
+        top: 16%;
+        width: 18%;
+        text-align: center;
+        font-size: 15px;
+    }
+
+    nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav li {
+            float: left;
+        }
+
+        nav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav li a:hover {
+            background-color: #1f84f7;
+        }
+
+        /* Added styling for the sub-menu */
+        nav ul ul {
+            display: none;
+            position: absolute;
+            background-color: #100a89;
+            padding: 0;
+            margin-top: 0;
+        }
+
+        nav ul li:hover>ul {
+            display: inherit;
+        }
+
+        nav ul ul li {
+            float: none;
+            width: 100%;
+        }
+
+        nav ul ul a {
+            padding: 10px 16px;
+        }
+
+        nav ul ul a:hover {
+            text-decoration: underline;
+            /* Add underline only on hover */
+        }

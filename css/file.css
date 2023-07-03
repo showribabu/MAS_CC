@@ -1,0 +1,24 @@
+
+
+
+table {
+    width: 98%;
+    margin: 20px;
+    padding: 10px;
+}
+
+
+
+td {
+    padding: 12px;
+    padding-top: 20px;
+    text-align: center;
+    border: 1px solid black;
+    background-color: #6b80d4;
+    height: 80px;
+    width: 33%;
+}
+
+#container_table{
+    width: 80%;
+}

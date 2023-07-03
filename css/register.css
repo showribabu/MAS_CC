@@ -1,0 +1,80 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-size: 14px;
+    background-color: rgb(232, 236, 237);
+}
+
+.container{
+    background-color: white;
+    width: 700px;
+    padding: 20px;
+    margin: 50px auto 0;
+    border-top: 10px solid darkblue;
+    border-radius: 15px;
+}
+
+.container h1{
+    font-size: 24px;
+    line-height: 24px;
+    padding: 30px;
+    text-align: center;
+}
+
+.input-name{
+    margin: 20px auto;
+    width : 90%;
+    /* position: relative; */
+}
+
+.lock{
+    padding: 8px 11px;
+}
+
+.name{
+    width: 30%;
+    padding: 8px 0px 8px 40px;
+}
+
+.input-name span{
+    margin-left: 20px;
+}
+
+.text-name{
+    width: 98%;
+    padding: 8px 0px 8px 40px;
+}
+
+.lock{
+    padding: 8px 11px;
+    position:absolute;
+    font-size:40px;
+    color: darkblue ;
+    border-right: 1px solid black;
+}
+
+.text-name , .name{
+    outline:none;
+}
+
+.checkb1{
+    position: relative;
+    top: 7px;
+    left: 265px;
+}
+.checkb2{
+    position: absolute;
+    left: 6730px;
+}
+.last_btn{
+    background-color: darkblue;
+    color: White;
+    height: 40px;
+    width: 100px;
+    border-radius: 25px;
+    font-size: 20px;
+}

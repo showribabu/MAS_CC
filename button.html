@@ -1,0 +1,281 @@
+
+<style>
+     .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /*Danger Button*/
+        .btn.btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+          }
+            
+          .btn.btn-danger:active {
+            background-color: #bd2130;
+          }
+
+              .btn-danger 
+            {
+                color: #fff;
+                /* background-color: #ff0000; */
+                background-color: #ff2222; /* Lighter shade of red */
+                border: none;
+                border-radius: 5px;
+                padding: 10px 20px;
+            }
+    
+            .btn-danger:hover 
+            {
+                background-color: #cc0000;
+            }
+        
+                  /*Success Button*/
+            .btn.btn-success 
+            {
+                background-color: #28a745;
+                color: #fff;
+            }
+
+            .btn.btn-success:hover {
+              background-color: #218838;
+            }
+
+            .btn.btn-success:active {
+              background-color: #1e7e34;
+            }
+
+                      /*Warning Button*/
+            .btn.btn-warning {
+              background-color: #ffc107;
+              color: #fff;
+            }
+
+            .btn.btn-warning:hover {
+              background-color: #e0a800;
+            }
+
+            .btn.btn-warning:active {
+              background-color: #d39e00;
+            }
+
+          /*Status Table */
+
+        .status 
+        {
+            padding: 3px;
+            border-radius: 1rem;
+            text-align: center;
+        }
+        .status 
+        {
+            padding: 8px 16px;
+            border: 1px solid #86e49d;
+            border-radius: 4px;
+            text-align: center;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .status.accepted 
+        {
+            background-color: transparent;
+            color: #006b21;
+        }
+
+        .status.rejected 
+        {
+            background-color: transparent;
+            color: #b30021;
+        }
+
+        .status.pending 
+        {
+            background-color: transparent;
+            color: #fff;
+        }
+
+
+        /*Table styles*/
+
+
+          .data
+        {
+            /*min-width:200px; 
+            min-height:600px; */
+            align-items: center;
+            text-align: center;
+            /* background-color:rgb(251, 249, 233); */
+            background-color:white;
+            /* box-shadow: 2px 2px 4px black; */
+
+            /* background-color:rgb(220, 211, 211);  */
+
+            /* padding:50px; */
+            margin-top:30px;
+            width:58%;
+            margin-left:23%;
+            border-radius:18px;
+            padding:25px 16px 15px 15px;
+
+            overflow-y: scroll;
+            max-height:500px;
+
+
+            
+            
+
+
+            
+        }
+       
+       
+        .tb 
+        {
+
+            background-color:white;
+            box-shadow: 2px 2px 4px black;
+            /* margin-top:30px;   */
+            
+           
+
+        }
+
+    .pp
+    {
+        /* background-color: rgba(207, 15, 15, 0.267); */
+        background-color:rgb(202, 196, 224);
+        color:black;
+        border-bottom:3px darkblue solid;
+        border-top:3px darkblue solid;
+        padding:15px;
+        
+        box-shadow: 1px 1px 4px black;
+        
+        text-align:center;
+        align-items:center;
+        /* width:780px; */
+        margin-top:0px;
+        
+     
+    }
+
+    #req {
+    letter-spacing: 0.2rem;
+    font-weight:bolder;
+    font-size:18px;
+    text-shadow:1px 1px .1px black;
+    }
+
+    table {
+        border-collapse: collapse;
+
+    }
+
+    #tr1 th,
+    #tr1 td {
+        border: 3px solid black;
+        padding: 18px;
+        text-align: center;
+        font-size:16px;
+        /* background-color: rgb(103 98 185 / 48%); */
+
+    }
+
+    table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        background-color: #f9f9f9;
+        border: 2px solid #ddd;
+        border-radius:18px;
+        /* background-color:white; */
+
+        
+    }
+    
+    th, td {
+        padding: 10px;
+        border-bottom: 2px solid #ddd;
+    }
+    
+    th {
+    position: sticky;
+    background-color: #b495fdfe;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+    
+    tr:nth-child(even) {
+        background-color: #f8f8f8;
+    }
+    
+    tr:hover {
+        background-color: #dccfcf;
+    }
+    
+    .data table td,th {
+        border: 3px solid black; /* Set the desired border color */
+        padding: 10px;
+        text-align: center;
+    }
+    td,th {
+            border-collapse: collapse;
+            padding: 1rem;
+            text-align: center;
+            }
+
+
+/*Image Icon -name*/
+
+    .pic 
+    {
+       
+       
+        position:absolute;
+        top:8px;
+        left:5px;
+
+    }
+
+    img 
+    {
+        width:90px;
+        height:90px;
+    }
+    .data2 
+    {
+        color:white;
+        position:absolute;
+        top:28px;
+        margin-left: 120px;
+
+    }
+
+    /*image icon for the gmsuccess*/
+   /*.data4 
+    {
+        position:absolute;
+        background-color:white;
+        margin-left: 120px;
+       font-size:10px;
+       top:8px;
+       margin-top:0%;
+       width:160px; 
+       height:90px;
+       display:block;
+       text-align:center;
+       border-radius:5px;
+           
+    }
+    .pic:hover + .data {
+        display: block;
+    }*/
+       
+
+</style>
