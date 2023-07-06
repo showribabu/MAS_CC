@@ -58,7 +58,7 @@ include "button.html";
 
                 // $sql = 'SELECT * FROM requests where request_from="'.$gmid.'"';
 
-                $sql = 'SELECT * FROM requests WHERE request_from = "' . $gmid . '" AND request_to NOT IN (SELECT user_id FROM group_data WHERE group_number = "' . $group_number . ' ")';
+                $sql = 'SELECT * FROM requests WHERE request_from = "' . $gmid . '" AND request_to NOT IN (SELECT user_id FROM group_data WHERE group_number = "'.$group_number .' ")';
 
                 $r=mysqli_query($con, $sql);
 

@@ -166,8 +166,8 @@ date_default_timezone_set('Asia/Kolkata');
                 echo "<script>alert('data stored on the backup_data!!!');</script>";
 
 
-                // $sql23='delete from group_data where member_id="'.$hmid.'"';
-                $sql23='update group_data set admin_id="NULL",group_id="NULL",mv="NULL",member_id="NULL" , pgk="NULL", bi="NULL" ,activity_status="inactive",privilege="NULL",enc_key="NULL",creation_time="'.$atime.'"  where user_id="'.$uid3.'" and group_number="'.$group_number.'" ';
+                $sql23='delete from group_data where user_id="'.$uid3.'" and group_number="'.$group_number.'"';
+                //$sql23='update group_data set admin_id="NULL",group_id="NULL",mv="NULL",member_id="NULL" , pgk="NULL", bi="NULL" ,activity_status="inactive",privilege="NULL",enc_key="NULL",creation_time="'.$atime.'"  where user_id="'.$uid3.'" and group_number="'.$group_number.'" ';
                 $r7=mysqli_query($con, $sql23);
                 if ($r7 && mysqli_affected_rows($con) > 0) {
                     echo "<script>alert('Member removed successfully!!!');</script>";
@@ -219,7 +219,8 @@ date_default_timezone_set('Asia/Kolkata');
             if ($r6 && mysqli_affected_rows($con) > 0) {
                 echo "<script>alert('data stored on the backup_data!!!');</script>";
 
-                $sql23='update group_data set admin_id="NULL",group_id="NULL",mv="NULL", member_id="NULL" , pgk="NULL", bi="NULL" ,activity_status="inactive", privilege="NULL", enc_key="NULL", creation_time="'.$atime.'"  where user_id="'.$uid3.'" and group_number="'.$group_number.'" ';
+                $sql23='delete from group_data where user_id="'.$uid3.'" and group_number="'.$group_number.'"';
+                //$sql23='update group_data set admin_id="NULL",group_id="NULL",mv="NULL", member_id="NULL" , pgk="NULL", bi="NULL" ,activity_status="inactive", privilege="NULL", enc_key="NULL", creation_time="'.$atime.'"  where user_id="'.$uid3.'" and group_number="'.$group_number.'" ';
                 $r7=mysqli_query($con, $sql23);
                 if ($r7 && mysqli_affected_rows($con) > 0) {
                     //once data stored on the backup data...and delete record from the group_data
@@ -333,7 +334,9 @@ date_default_timezone_set('Asia/Kolkata');
             {
                 echo "<script>alert('data stored on the backup_data!!!');</script>";
 
-                $sql23='update group_data set admin_id="NULL",group_id="NULL", mv="NULL", member_id="NULL", pgk="NULL", bi="NULL" , activity_status="inactive" , privilege="NULL" , enc_key="NULL",creation_time="'.$atime.'"  where user_id="'.$uid3.'" and group_number="'.$group_number.'" ';
+                $sql23='delete from group_data where user_id="'.$uid3.'" and group_number="'.$group_number.'"';
+
+                //$sql23='update group_data set admin_id="NULL",group_id="NULL", mv="NULL", member_id="NULL", pgk="NULL", bi="NULL" , activity_status="inactive" , privilege="NULL" , enc_key="NULL",creation_time="'.$atime.'"  where user_id="'.$uid3.'" and group_number="'.$group_number.'" ';
                 $r7=mysqli_query($con, $sql23);
                 if ($r7 && mysqli_affected_rows($con) > 0) {
                     echo "<script>alert('Member removed successfully!!!');</script>";
