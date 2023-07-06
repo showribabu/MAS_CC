@@ -7,6 +7,17 @@ session_start();
 include "nav.html";
 include "button.html";
 
+$status = $_SESSION['request_status'];
+
+if ($status === 'success') {
+    echo "<script>alert('Request sent successfully');</script>";
+} elseif ($status === 'failure') {
+    echo "<script>alert('User ID not found');</script>";
+}
+
+// Clear the status to prevent showing the alert on subsequent refreshes
+$_SESSION['request_status'] = '';
+
 
 ?>
 
