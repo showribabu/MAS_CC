@@ -79,7 +79,7 @@ include "button.html";
                <!-- <img src="gm1.jpg" alt="group manager"> -->
                <img src="<?php echo $_SESSION['photo_location'];?>" alt="group manager">
     </div>
-    <p class="data2"><?php echo $_SESSION['name'];?></p>
+    <p class="data2"><?php echo $_SESSION['name'];echo "<br>"; echo $_SESSION['group_number'];?></p>
     <footer>
         <p>MAS : MULTI PARTY AUTHENTICATION SYSTEM</p>
     </footer>

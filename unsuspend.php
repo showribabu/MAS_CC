@@ -266,7 +266,7 @@ $ix=$row3['ix'];
     <footer>
         <p>MAS : MULTI PARTY AUTHENTICATION SYSTEM</p>
     </footer>
-    <p class="data2"><?php echo $_SESSION['name'];?></p>
+    <p class="data2"><?php echo $_SESSION['name'];echo "<br>"; echo $_SESSION['group_number'];?></p>
 
  </body>
  </html>

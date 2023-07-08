@@ -169,7 +169,8 @@ $gm_id = $_SESSION['gmid'];
 <script>
     var groupType = "<?php echo $group_type; ?>";
 </script>
-<p class="data2"><?php echo $_SESSION['name']; ?></p>
+<p class="data2"><?php echo $_SESSION['name'];echo "<br>"; echo $_SESSION['group_number'];?></p>
+
 
 </body>
 </html>
