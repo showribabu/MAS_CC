@@ -11,6 +11,29 @@ session_start();
 if (isset($_GET['muid'])) {
     $uid1 = $_GET['muid'];
     $_SESSION['uid1']=$uid1;
+    $r_status='p';
+    $priv='Member';
+
+}
+if(isset($_GET['authuser_id']))
+{
+    $uid1 = $_GET['authuser_id'];
+    $_SESSION['uid1']=$uid1;
+    // $_SESSION['authority']=1;
+    $r_status='au';
+    $priv=' Authority Member';
+
+}
+if(isset($_GET['reguser_id']))
+{
+    $uid1 = $_GET['reguser_id'];
+    $_SESSION['uid1']=$uid1;
+    // $_SESSION['regular']=1;
+    $r_status='re';
+    $priv='Regular Member';
+
+}
+
     $gmid=$_SESSION['gmid'];
     $group_number=$_SESSION['group_number'];
     $group_type=$_SESSION['group_type'];
@@ -35,25 +58,30 @@ if (isset($_GET['muid'])) {
     }
     $request_id=rid();
 
-    $sql3 = 'INSERT INTO requests (request_id,request_from,request_to,message,r_status,group_type,group_number) VALUES ("'.$request_id.'","' . $gmid . '","'.$uid1.'","You are selected as a group member: from Group manager - check status table..!!!","p","'.$group_type.'","'.$group_number.'")';
+    $msg="You are selected as a ".$priv. " of group type : ".$group_type." and group number : ".$group_number." from Group manager !!!";
+    $sql3 = 'INSERT INTO requests (request_id,request_from,request_to,message,r_status,group_type,group_number) VALUES ("'.$request_id.'","' . $gmid . '","'.$uid1.'","'.$msg.'","'.$r_status.'","'.$group_type.'","'.$group_number.'")';
 
 
     $r1 = mysqli_query($con, $sql3);
 
+    if ($r1) 
+    {
+    echo "<script>alert('Request sent successfully');</script>";
+    header("Location: gmstatus.php");
+    } 
+    else 
+    {
+        echo "<script>alert('User ID not found');</script>";
+    }
+
+
     // if ($r1) {
-    //     header("Location: gmstatus.php?status=success");
+    //     $_SESSION['request_status'] = 'success';
+       
     // } else {
-    //     header("Location: gmstatus.php?status=failure");
+    //     $_SESSION['request_status'] = 'failure';
+    //     header("Location: gmstatus.php");
     // }
 
 
-    if ($r1) {
-        $_SESSION['request_status'] = 'success';
-        header("Location: gmstatus.php");
-    } else {
-        $_SESSION['request_status'] = 'failure';
-        header("Location: gmstatus.php");
-    }
-
-}
 ?>

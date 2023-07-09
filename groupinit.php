@@ -40,7 +40,7 @@ include "button.html";
     <div class="data">
         <p class="pp" id="req">LIST OF MEMBERS</p>
         <table border="5px" cellpadding="8px" align="center" cellspacing="5px" class="tb" style="height:100px; width:780px;  text-align:center; align-items:center;">
-            <tr id="tr1"><th>NAME</th><th>EMAIL ID</th><th>MEMBER SELECTION</th></tr>
+            <tr id="tr1"><th>NAME</th><th>EMAIL ID</th><?php  if($_SESSION['group_type']=='C'){echo "<th>Authority</th><th>Regular</th>";} else{echo "<th>MEMBER SELECTION</th>";}?></tr>
             <?php
 
         try{
@@ -49,7 +49,18 @@ include "button.html";
 
                 echo "<tr><td>$name</td>";
                 echo"<td>$i[email]</td>";
-                echo "<td><a href='grpinit.php?muid=$i[user_id]'  class='btn btn-danger' id='R'>SELECT</a></td>";
+                if($_SESSION['group_type']=='C')
+                {
+                    echo "<td colspan='2'><a href='grpinit.php?authuser_id={$i["user_id"]}' class='btn btn-success'>AUTHORITY</a> <a href='grpinit.php?reguser_id={$i["user_id"]}' class='btn btn-danger'>REGULAR</a></td>";
+
+                    // echo "<td><a href='grpinit.php?muid=$i[user_id]'  class='btn btn-danger' id='R'>SELECT</a></td>";
+
+                }
+                else{
+
+                    echo "<td><a href='grpinit.php?muid=$i[user_id]'  class='btn btn-danger' id='R'>SELECT</a></td>";
+
+                }
 
                 echo "</tr>";
                

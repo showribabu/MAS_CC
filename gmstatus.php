@@ -7,16 +7,19 @@ session_start();
 include "nav.html";
 include "button.html";
 
-$status = $_SESSION['request_status'];
 
-if ($status === 'success') {
-    echo "<script>alert('Request sent successfully');</script>";
-} elseif ($status === 'failure') {
-    echo "<script>alert('User ID not found');</script>";
-}
+// $status = $_SESSION['request_status'];
 
-// Clear the status to prevent showing the alert on subsequent refreshes
-$_SESSION['request_status'] = '';
+// if ($status === 'success') 
+// {
+//     echo "<script>alert('Request sent successfully');</script>";
+// } elseif ($status === 'failure') 
+// {
+//     echo "<script>alert('User ID not found');</script>";
+// }
+
+// // Clear the status to prevent showing the alert on subsequent refreshes
+// $_SESSION['request_status'] = '';
 
 
 ?>
@@ -66,10 +69,11 @@ $_SESSION['request_status'] = '';
             <?php
             $gmid=$_SESSION['gmid'];
             $group_number=$_SESSION['group_number'];
+            $group_type=$_SESSION['group_type'];
 
                 // $sql = 'SELECT * FROM requests where request_from="'.$gmid.'"';
 
-                $sql = 'SELECT * FROM requests WHERE request_from = "' . $gmid . '" AND request_to NOT IN (SELECT user_id FROM group_data WHERE group_number = "'.$group_number .' ")';
+                $sql = 'SELECT * FROM requests WHERE request_from = "' . $gmid . '" AND group_number="'.$group_number.'" AND request_to NOT IN (SELECT user_id FROM group_data WHERE group_number = "'.$group_number .' ")';
 
                 $r=mysqli_query($con, $sql);
 
@@ -81,7 +85,7 @@ $_SESSION['request_status'] = '';
 
                         $sql5="select first_name,middle_name,last_name,email from user where user_id='$i[request_to]'";
                         $r5=mysqli_query($con,$sql5);
-                        if($i['r_status']=='a' || $i['r_status']=='p' || $i['r_status']=='r')
+                        if($i['r_status']=='a' || $i['r_status']=='p' || $i['r_status']=='r'||$i['r_status'] == 'aau'||$i['r_status'] == 'are'||$i['r_status'] == 'au'|| $i['r_status'] == 're')
                         {
                             if($r5)
                             {
@@ -91,17 +95,43 @@ $_SESSION['request_status'] = '';
                                 echo"<td>$row[email]</td>";
                                 echo "<td>Selected</td>";
                             
-                            if ($i['r_status'] == 'a') {
-                                echo "<td class='status accepted'><a href='credentials.php?user_id={$i['request_to']}' class='btn btn-success' id='A'>Accepted</a></td>";
-                            } elseif ($i['r_status'] == 'r') {
-                                echo "<td class='status rejected'><a href='#' class='btn btn-danger' id='R'>Rejected</a></td>";
-                            } elseif ($i['r_status'] == 'p') {
-                                echo "<td class='status pending'><a href='#' class='btn btn-warning' id='P'>Pending</a></td>";
-                            } else {
-                                echo "<td>$i[r_status]</td>";
+                            if($group_type=='C')
+                            {
+                                if ($i['r_status'] == 'aau' || $i['r_status'] == 'are')  {
+                                    echo "<td class='status accepted'><a href='credentials.php?user_id={$i['request_to']}' class='btn btn-success' id='A'>Accepted</a></td>";
+                                } elseif ($i['r_status'] == 'r') {
+                                    echo "<td class='status rejected'><a href='#' class='btn btn-danger' id='R'>Rejected</a></td>";
+                                } elseif ($i['r_status'] == 'au'|| $i['r_status'] == 're') {
+                                    echo "<td class='status pending'><a href='#' class='btn btn-warning' id='P'>Pending</a></td>";
+                                } 
+                                
                             }
+                            else 
+                            {
+                                if ($i['r_status'] == 'a')  {
+                                    echo "<td class='status accepted'><a href='credentials.php?user_id={$i['request_to']}' class='btn btn-success' id='A'>Accepted</a></td>";
+                                } elseif ($i['r_status'] == 'r') {
+                                    echo "<td class='status rejected'><a href='#' class='btn btn-danger' id='R'>Rejected</a></td>";
+                                } elseif ($i['r_status'] == 'p') {
+                                    echo "<td class='status pending'><a href='#' class='btn btn-warning' id='P'>Pending</a></td>";
+                                } 
+                                
+                            }
+
+
+                            // if ($i['r_status'] == 'a' || $i['r_status'] == 'aau'||$i['r_status'] == 'are')  {
+                            //     echo "<td class='status accepted'><a href='credentials.php?user_id={$i['request_to']}' class='btn btn-success' id='A'>Accepted</a></td>";
+                            // } elseif ($i['r_status'] == 'r') {
+                            //     echo "<td class='status rejected'><a href='#' class='btn btn-danger' id='R'>Rejected</a></td>";
+                            // } elseif ($i['r_status'] == 'p'|| $i['r_status'] == 'au'||$i['r_status'] == 're') {
+                            //     echo "<td class='status pending'><a href='#' class='btn btn-warning' id='P'>Pending</a></td>";
+                            // } else {
+                            //     echo "<td>$i[r_status]</td>";
+                            // }
                         
+
                             echo "</tr>";
+
                             }
                             // echo "<tr><td>$i[request_to]</td>";
                             // echo "<td><a href='#' class='btn btn-success' id='R'>SELECTED</a></td>";
@@ -120,7 +150,6 @@ $_SESSION['request_status'] = '';
       
         </table>
     </div>
-
 
     <div class='pic'>
             <!-- <img src="gm1.jpg" alt="group manager"> -->

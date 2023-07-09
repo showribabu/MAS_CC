@@ -108,7 +108,9 @@ $group_number=$_SESSION['group_number'];
 
 
 
+// $sql2='SELECT * FROM user WHERE user_id IN(select user_id from group_data where group_number="'.$group_number.'" and user_id != "'.$gmid.'" and activity_status="active" order by creation_time)';
 $sql2='SELECT * FROM user WHERE user_id IN(select user_id from group_data where group_number="'.$group_number.'" and user_id != "'.$gmid.'" and activity_status="active" order by creation_time)';
+
 $r2=mysqli_query($con,$sql2);
         if($r2)
         {

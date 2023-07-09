@@ -8,11 +8,11 @@
 
 //finally alert message to manager and member(suggestion table...);
 
-
 include "conn.php";
 session_start();
 
-if (isset($_GET['user_id'])) {
+if (isset($_GET['user_id'])) 
+{
     $_SESSION['uid2'] = $_GET['user_id'];
     $uid2 = $_SESSION['uid2'];
     //members id...id1
@@ -174,6 +174,8 @@ if (isset($_GET['user_id'])) {
     
         printf("<br>MEmber Id: %s<br> partial groupkey: %s <br> bi: %s", $mid, $pgpk, $bindx);
         printf("<br>Gm id : %s <br> user id : %s<br>", $gmid, $uid2);
+        $privilege='member';
+
     }
 
     if($group_type=='B')
@@ -235,6 +237,8 @@ if (isset($_GET['user_id'])) {
         //Bio index 
         $ix=$_SESSION['ix'];
         $bindx=hash('sha512', $new_sec*$ix);
+        $privilege='member';
+
     
         printf("<br>MEmber Id: %s<br> partial groupkey: %s <br> bi: %s", $mid, $pgpk, $bindx);
         printf("<br>Gm id : %s <br> user id : %s<br>", $gmid, $uid2);
@@ -250,38 +254,30 @@ if (isset($_GET['user_id'])) {
         //member id
         $kv=$_SESSION['kv']; //system parameter...
 
-        //derived 'r'
         // $r=$_SESSION['r'];
 
-       
-        
         //Derivation of r
-        
         $qpowu=gmp_strval(gmp_powm($q, $secret3, $p));
         $qpowgm=gmp_strval(gmp_powm($q,$secret2,$p));
 
-        //member id
-        //Derivation of 'r'...
-
+        //member id of the group manager is used to derive the 'r'
         //here I considered GM as authority mmeber...
-
         $kv=$_SESSION['kv'];
 
         //derive 'r' from gm member id...
         try{
 
             $r=$mmid/$qpowgm*$kv*$mv;
+            // $r=gmp_strval($r);
 
         }
         catch(Exception $e){
 
             $r=$mmid/$qpowgm*$kv*$mv;
+            // $r=gmp_strval($r);
+
 
         }
-
-
-
-
 
         $hmid= $qpowu*$mv*$kv*$r;
         $mid=hash2mid($hmid);
@@ -291,17 +287,30 @@ if (isset($_GET['user_id'])) {
     
         //Bio index 
         $ix=$_SESSION['ix'];
-        // if($authority==1)
-        // {
-        //     $bindx=hash('sha512', $qpowu*$ix);
 
-        // }
-        // else
-        // {
-        //     $bindx=hash('sha512', $qpowu*$ix*$r);
 
-        // }
-        $bindx=hash('sha512', $qpowu*$ix);
+        $sql12 = "SELECT * FROM requests WHERE request_from='$gmid' AND request_to='$uid2' AND (r_status='aau' OR r_status='are') and group_number='$_SESSION[group_number]'";
+        $r2=mysqli_query($con,$sql12);
+        // $r_status=mysqli_fetch_row($r)[0];
+        foreach($r2 as $i)
+        {
+            $r_status=$i['r_status'];
+        }
+        // $r_status=$row1['r_status'];
+        // $bindx = "";
+        if($r_status=='aau')
+        {  
+           $bindx=hash('sha512', $qpowu*$ix);
+           $privilege='authority_member';
+        }
+        else if($r_status=='are')//r_status =='are'
+        {   
+            $bindx=hash('sha512', $qpowu*$ix*$r);
+            //updation of this one is pending....
+            $privilege='member';
+
+        }
+        // $bindx=hash('sha512', $qpowu*$ix);
     
         printf("<br>MEmber Id: %s<br> partial groupkey: %s <br> bi: %s", $mid, $pgpk, $bindx);
         printf("<br>Gm id : %s <br> user id : %s<br>", $gmid, $uid2);
@@ -340,6 +349,8 @@ if (isset($_GET['user_id'])) {
         //Bio index 
         $ix=$_SESSION['ix'];
         $bindx=hash('sha512', $qpowu*$ix*$r);
+        $privilege='member';
+
     
         printf("<br>MEmber Id: %s<br> partial groupkey: %s <br> bi: %s", $mid, $pgpk, $bindx);
         printf("<br>Gm id : %s <br> user id : %s<br>", $gmid, $uid2);
@@ -357,50 +368,59 @@ if (isset($_GET['user_id'])) {
 
 if($group_type=='B')
 {
-    $sql5='INSERT INTO group_data(user_id,group_type,group_number,admin_id,group_id,mv,member_id,pgk,bi,privilege,activity_status,creation_time) values("'.$uid2.'","'.$group_type.'","'.$group_number.'","'.$admin_id.'","'.$group_id.'","'.$mv.'","'.$hmid.'","'.$pgpk.'","'.$bindx.'","member","active","'.$currentDateTime.'")';
+    $sql5='INSERT INTO group_data(user_id,group_type,group_number,admin_id,group_id,mv,member_id,pgk,bi,privilege,activity_status,creation_time) values("'.$uid2.'","'.$group_type.'","'.$group_number.'","'.$admin_id.'","'.$group_id.'","'.$mv.'","'.$hmid.'","'.$pgpk.'","'.$bindx.'","'.$privilege.'","active","'.$currentDateTime.'")';
 
     //INSERT INTO `group_data`(`user_id`, `group_type`, `group_number`, `admin_id`, `group_id`, `mv`, `member_id`, `pgk`, `bi`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]','[value-9]')
-try {
-    $r6 = mysqli_query($con, $sql5);
+    try {
+        $r6 = mysqli_query($con, $sql5);
 
-    if ($r6 && mysqli_affected_rows($con) > 0) {
-        //update remain members data....
-        $sql123='update group_data set member_id="'.$hmid.'" ,pgk="'.$pgpk.'",bi="'.$bindx.'"  where group_number="'.$group_number.'" and activity_status="active"';
-        $r7=mysqli_query($con, $sql123);
-        if ($r7 && mysqli_affected_rows($con) > 0) {
-            echo "<script>alert('Member added successfully!!!');</script>";
-        } else {
-            echo "<script>alert('Failed to update group data.');</script>";
+        if ($r6 && mysqli_affected_rows($con) > 0) {
+            //update remain members data....
+            $sql123='update group_data set member_id="'.$hmid.'" ,pgk="'.$pgpk.'",bi="'.$bindx.'"  where group_number="'.$group_number.'" and activity_status="active"';
+            $r7=mysqli_query($con, $sql123);
+            if ($r7 && mysqli_affected_rows($con) > 0) {
+                echo "<script>alert('Member added successfully!!!');</script>";
+            } else {
+                echo "<script>alert('Failed to update group data.');</script>";
+
+            }
 
         }
-
     }
+    catch (Exception $e )
+    {
+        echo "<script>alert('User with userid already exists!!!');</script>";
+    } 
 }
-catch (Exception $e ){
-    echo "<script>alert('User with userid already exists!!!');</script>";
-} 
-}
-else 
+
+else if($group_type=='A'||$group_type=='C' || $group_type=='D')
 {
 
 
-    $sql5='INSERT INTO group_data(user_id,group_type,group_number,admin_id,group_id,mv,member_id,pgk,bi,privilege,activity_status,creation_time) values("'.$uid2.'","'.$group_type.'","'.$group_number.'","'.$admin_id.'","'.$group_id.'","'.$mv.'","'.$hmid.'","'.$pgpk.'","'.$bindx.'","member","active","'.$currentDateTime.'")';
+    $sql5='INSERT INTO group_data(user_id,group_type,group_number,admin_id,group_id,mv,member_id,pgk,bi,privilege,activity_status,creation_time) values("'.$uid2.'","'.$group_type.'","'.$group_number.'","'.$admin_id.'","'.$group_id.'","'.$mv.'","'.$hmid.'","'.$pgpk.'","'.$bindx.'","'.$privilege.'","active","'.$currentDateTime.'")';
 
     //INSERT INTO `group_data`(`user_id`, `group_type`, `group_number`, `admin_id`, `group_id`, `mv`, `member_id`, `pgk`, `bi`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]','[value-9]')
     $r6 = mysqli_query($con, $sql5);
-    if ($r6 && mysqli_affected_rows($con) > 0) {
+    if ($r6 && mysqli_affected_rows($con) > 0) 
+    {
         echo "<script>alert('Member added successfully!!!');</script>";
-    } else {
+    } 
+    else 
+    {
 
-        $sql6 = 'UPDATE group_data SET user_id = "'.$uid2.'", group_type = "'.$group_type.'", group_number = "'.$group_number.'", admin_id = "'.$admin_id.'", group_id = "'.$group_id.'", mv = "'.$mv.'", member_id = "'.$hmid.'",pgk = "'.$pgpk.'", bi = "'.$bindx.'",activity_status="active", privilege="member",$currentDateTime="'.$currentDateTime.'" where user_id="'.$uid2.'" ';
+        $sql6 = 'UPDATE group_data SET user_id = "'.$uid2.'", group_type = "'.$group_type.'", group_number = "'.$group_number.'", admin_id = "'.$admin_id.'", group_id = "'.$group_id.'", mv = "'.$mv.'", member_id = "'.$hmid.'",pgk = "'.$pgpk.'", bi = "'.$bindx.'",activity_status="active", privilege="'.$privilege.'",$currentDateTime="'.$currentDateTime.'" where user_id="'.$uid2.'" ';
 
         $r7=mysqli_query($con, $sql6);
-        if ($r7 && mysqli_affected_rows($con) > 0) {
+        if ($r7 && mysqli_affected_rows($con) > 0) 
+        {
             echo "<script>alert('Member added successfully!!!');</script>";
-        } else {
-            if (mysqli_num_rows(mysqli_query($con, 'SELECT * FROM group_data WHERE user_id="'.$uid2.'"')) > 0) {
+        } else 
+        {
+            if (mysqli_num_rows(mysqli_query($con, 'SELECT * FROM group_data WHERE user_id="'.$uid2.'"')) > 0) 
+            {
                 echo "<script>alert('Failed to update group data.');</script>";
-            } else {
+            } else 
+            {
                 echo "<script>alert('Failed to add member or update group data.');</script>";
             }
         }

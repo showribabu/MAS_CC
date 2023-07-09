@@ -4,11 +4,11 @@ include "conn.php";
 
 
 
-    $gmid = $_SESSION['gmid'];
-    $group_type=$_SESSION['group_type'];
+    // $gmid = $_SESSION['gmid'];
+    // $group_type=$_SESSION['group_type'];
    
-    // $gmid = 'John_123';
-    // $group_type='A'; 
+    $gmid = 'Showri_1234';
+    $group_type='C'; 
 
     //members id...id1
     // $admid=1;
@@ -181,7 +181,7 @@ $qpowu=gmp_strval(gmp_powm($q,$secret2,$p));
 $mv=gmp_strval($mv);
 if($group_type=='C')
 {
-        $hmid=gmp_strval($qpowu*$mv*$kv*$r);
+        $hmid=$qpowu*$mv*$kv*$r;
 
 
 }
